@@ -11,6 +11,7 @@ import "./index.css";
 import "./index-pro.css";
 import { DarkModeProvider } from "../DarkModeContext";
 import StatusBar from "../StatusBar";
+import { observer } from "mobx-react-lite";
 
 const jabber = new Jabber();
 
@@ -104,6 +105,7 @@ function App({ mobxStore }) {
           <div className="notes__column notes__column_primary">
             <div className="notes__column-content">
               <PrimaryPane
+                userPreferences={mobxStore.userPreferences}
                 activeNoteId={activeNoteId}
                 notes={notes}
                 saveNote={saveNote}
@@ -119,4 +121,4 @@ function App({ mobxStore }) {
   );
 }
 
-export default App;
+export default observer(App);

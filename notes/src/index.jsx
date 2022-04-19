@@ -43,23 +43,21 @@ const theme = createTheme({
 const useReact18 = true;
 
 const element = (
-  <React.StrictMode>
-    <ReactRedux.Provider store={reduxStore}>
-      <MobxReact.Observer>
-        {() => (
-          <ThemeProvider theme={theme}>
-            {!useReact18 && (
-              <div className="react-17-warning">
-                Warning: running in the React 17 mode. Improved batching is
-                disabled.
-              </div>
-            )}
-            <App mobxStore={mobxStore} />
-          </ThemeProvider>
-        )}
-      </MobxReact.Observer>
-    </ReactRedux.Provider>
-  </React.StrictMode>
+  <ReactRedux.Provider store={reduxStore}>
+    <MobxReact.Observer>
+      {() => (
+        <ThemeProvider theme={theme}>
+          {!useReact18 && (
+            <div className="react-17-warning">
+              Warning: running in the React 17 mode. Improved batching is
+              disabled.
+            </div>
+          )}
+          <App mobxStore={mobxStore} />
+        </ThemeProvider>
+      )}
+    </MobxReact.Observer>
+  </ReactRedux.Provider>
 );
 
 if (useReact18) {

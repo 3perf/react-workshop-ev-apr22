@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import fakeApi from "../../utils/fakeApi";
 import NoteEditor from "../NoteEditor";
@@ -8,7 +9,7 @@ import { ActiveAuthors } from "../ActiveAuthors";
 import spinner from "./spinner.svg";
 import "./index.css";
 
-function PrimaryPane({ activeNoteId, notes, saveNote }) {
+function PrimaryPane({ activeNoteId, notes, saveNote, userPreferences }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [publishedAt, setPublishedAt] = useState(null);
@@ -70,7 +71,10 @@ function PrimaryPane({ activeNoteId, notes, saveNote }) {
           activeNoteId={activeNoteId}
         />
         <div className="primary-pane__view">
-          <NoteView text={notes[activeNoteId].text} />
+          <NoteView
+            text={notes[activeNoteId].text}
+            userPreferences={userPreferences}
+          />
         </div>
       </div>
       <div
@@ -85,4 +89,4 @@ function PrimaryPane({ activeNoteId, notes, saveNote }) {
   );
 }
 
-export default PrimaryPane;
+export default observer(PrimaryPane);
