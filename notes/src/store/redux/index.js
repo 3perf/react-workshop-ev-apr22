@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import userReducer from "./userReducer";
 import noteMetadataReducer from "./noteMetadataReducer";
+import userPreferencesReducer from "./userPreferences";
 
 const store = configureStore({
   reducer: combineReducers({
     users: userReducer,
     noteMetadata: noteMetadataReducer,
+    userPreferences: userPreferencesReducer,
   }),
   preloadedState: {
     users: [
