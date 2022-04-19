@@ -1,3 +1,4 @@
+import { memo /*, useMemo */ } from "react";
 import { TextField } from "@mui/material";
 
 function FilterInput({ filter, onChange, noteCount }) {
@@ -12,4 +13,5 @@ function FilterInput({ filter, onChange, noteCount }) {
     />
   );
 }
-export default FilterInput;
+
+export default memo(FilterInput);

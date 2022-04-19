@@ -4,7 +4,7 @@ import "./index.css";
 function PublishingTo({ publishingTarget, onPublishingTargetChange }) {
   return (
     <>
-      Publishing to: {publishingTarget}{" "}
+      Publishing to: {publishingTarget.target}{" "}
       <button
         className="publishing-to__button"
         onClick={() => {

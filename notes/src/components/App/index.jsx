@@ -19,11 +19,6 @@ function App({ mobxStore }) {
   const [notes, setNotes] = useState(getNotes());
   const [activeNoteId, setActiveNoteId] = useState(null);
 
-  const [isPro, setIsPro] = useState(null);
-  useEffect(() => {
-    fakeApi.getProStatus().then((isPro) => setIsPro(isPro));
-  }, []);
-
   const dispatch = useDispatch();
 
   const saveNote = (id, { text, date }) => {
@@ -96,7 +91,7 @@ function App({ mobxStore }) {
       <div className="notes">
         <div className="notes__columns">
           <div className="notes__column notes__column_list">
-            <h1>NoteList{isPro && " Pro"}</h1>
+            <SomethingSomething />
             <div className="notes__column-content">
               <NotesList
                 notes={notes}
@@ -124,5 +119,21 @@ function App({ mobxStore }) {
     </DarkModeProvider>
   );
 }
+
+// 2) move into a leaf component
+function SomethingSomething() {
+  const [isPro, setIsPro] = useState(null); // → 1) false
+  useEffect(() => {
+    fakeApi.getProStatus().then((isPro) => setIsPro(isPro));
+  }, []);
+
+  return <h1>NoteList{isPro && " Pro"}</h1>;
+}
+
+// useMemo() / memo() / useCallback()
+// → cheap but not free
+// → makes it harder to reason about the app
+// → might lead to bugs
+//    → eslint-plugin-react-hooks
 
 export default App;
