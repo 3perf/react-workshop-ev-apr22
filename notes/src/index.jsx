@@ -40,7 +40,7 @@ const theme = createTheme({
   },
 });
 
-const useReact18 = true;
+const useReact18 = false;
 
 const element = (
   <React.StrictMode>
