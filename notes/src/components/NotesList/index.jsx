@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import _ from "lodash";
+import { useMemo, useState, useTransition } from "react";
 import { Button, ButtonGroup } from "@mui/material";
 import FilterInput from "../FilterInput";
 import NoteButton from "../NoteButton";
@@ -11,27 +12,43 @@ function NotesList({
   onNewNotesRequested,
   onDeleteAllRequested,
 }) {
-  const [filter, setFilter] = useState("");
+  const [filterInput, setFilterInput] = useState("");
+  const [filterValue, setFilterValue] = useState("");
+
+  const [isTransitioning, startTransition] = useTransition();
+
+  // const setFilterValueDebounced = useMemo(() => {
+  //   const setFilterValueDebounced = _.debounce(setFilterValue, 500);
+  //   return setFilterValueDebounced;
+  // }, []);
 
   return (
     <div className="notes-list" style={{ position: "relative" }}>
       <div className="notes-list__filter">
         <FilterInput
-          filter={filter}
-          onChange={setFilter}
+          filter={filterInput}
+          onChange={(value) => {
+            setFilterInput(value);
+            startTransition(() => {
+              setFilterValue(value);
+            });
+          }}
           noteCount={Object.keys(notes).length}
         />
       </div>
 
-      <div className="notes-list__notes">
+      <div
+        className="notes-list__notes"
+        style={{ opacity: isTransitioning ? 0.5 : 1 }}
+      >
         {Object.values(notes)
           .sort((a, b) => b.date.getTime() - a.date.getTime())
           .filter(({ text }) => {
-            if (!filter) {
+            if (!filterValue) {
               return true;
             }
 
-            return text.toLowerCase().includes(filter.toLowerCase());
+            return text.toLowerCase().includes(filterValue.toLowerCase());
           })
           .map(({ id, text, date }) => (
             <NoteButton
@@ -40,7 +57,7 @@ function NotesList({
               isActive={activeNoteId === id}
               onNoteActivated={onNoteActivated}
               text={text}
-              filterText={filter}
+              filterText={filterValue}
               date={date}
             />
           ))}

@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { startTransition } from "react";
 import fakeApi from "../../utils/fakeApi";
 
 class NotesMetadataStore {
@@ -29,7 +30,9 @@ class NotesMetadataStore {
     const publishedDate = await fakeApi.getPublishedDate();
 
     this.setNotePublicStatus(noteId, true);
-    this.setNotePublishedDate(noteId, publishedDate.toLocaleTimeString());
+    startTransition(() => {
+      this.setNotePublishedDate(noteId, publishedDate.toLocaleTimeString());
+    });
     this.setMetadataUpdating(false);
   }
 
