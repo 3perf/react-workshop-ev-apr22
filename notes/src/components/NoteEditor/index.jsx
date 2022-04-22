@@ -9,7 +9,6 @@ function NoteEditor({ notes, activeNoteId, saveNote }) {
 
   useLayoutEffect(() => {
     const currentEditorHeight = textareaRef.current.clientHeight;
-    console.log({ currentEditorHeight });
     if (codeEditorHeight !== currentEditorHeight) {
       setCodeEditorHeight(currentEditorHeight);
     }
