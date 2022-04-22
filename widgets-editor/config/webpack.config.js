@@ -132,6 +132,10 @@ module.exports = function(webpackEnv) {
       publicPath: paths.publicUrlOrPath,
     },
     optimization: {
+      // optimization.minimize: false,
+      minimize: false,
+      moduleIds: "named",
+
       minimizer: [
         // This is only used in production mode
         new TerserPlugin({

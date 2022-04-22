@@ -11,7 +11,6 @@ import {
 import { DropdownOption } from "widgets/DropdownWidget";
 import { ContainerOrientation } from "constants/WidgetConstants";
 import { DateInput } from "@blueprintjs/datetime";
-import { TimezonePicker } from "@blueprintjs/timezone";
 import { Colors } from "constants/Colors";
 
 type ControlWrapperProps = {
@@ -258,14 +257,6 @@ export const StyledDatePicker = styled(DateInput)`
     }
   }
 }
-`;
-
-export const StyledTimeZonePicker = styled(TimezonePicker)`
-  &&& button {
-    background: ${(props) => props.theme.colors.paneInputBG};
-    color: ${(props) => props.theme.colors.textOnDarkBG};
-    box-shadow: none;
-  }
 `;
 
 export const StyledPropertyPaneButton = styled(Button)`

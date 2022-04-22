@@ -7,17 +7,51 @@ import "./index.css";
 function NoteButton({ isActive, id, onNoteActivated, text, filterText, date }) {
   const noteHeader = useRef();
 
-  useLayoutEffect(() => {
-    if (noteHeader.current) {
-      if (noteHeader.current.scrollWidth > noteHeader.current.clientWidth) {
-        noteHeader.current.classList.add("notes-list__note-header_overflowing");
-      } else {
-        noteHeader.current.classList.remove(
-          "notes-list__note-header_overflowing"
-        );
-      }
-    }
-  }, [text]);
+  // useLayoutEffect(() => {
+  //   if (noteHeader.current) {
+  //     // uLE × 100
+  //     // uLE 1: force the recalculation (because the DOM has just been updated)
+  //     // uLE 2: force the recalculation
+  //     // uLE 2: force the recalculation
+  //     if (noteHeader.current.scrollWidth > noteHeader.current.clientWidth) {
+  //       // uLE 1: invalidate the cache
+  //       // uLE 2: invalidate the cache
+  //       // uLE 2: invalidate the cache
+  //       noteHeader.current.classList.add("notes-list__note-header_overflowing");
+  //     } else {
+  //       noteHeader.current.classList.remove(
+  //         "notes-list__note-header_overflowing"
+  //       );
+  //     }
+  //   }
+  // }, [text]);
+
+  /*
+  for (const i of 0...100) {
+    noteHeader.current.scrollWidth
+    requestAnimationFrame(() => {
+      noteHeader.current.classList.add()
+    })
+  }
+  */
+
+  // useLayoutEffect(() => {
+  //   if (noteHeader.current) {
+  //     const isOverflowing =
+  //       noteHeader.current.scrollWidth > noteHeader.current.clientWidth;
+  //     requestAnimationFrame(() => {
+  //       if (isOverflowing) {
+  //         noteHeader.current.classList.add(
+  //           "notes-list__note-header_overflowing"
+  //         );
+  //       } else {
+  //         noteHeader.current.classList.remove(
+  //           "notes-list__note-header_overflowing"
+  //         );
+  //       }
+  //     });
+  //   }
+  // }, [text]);
 
   const className = [
     "notes-list__button",

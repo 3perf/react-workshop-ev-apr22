@@ -7,12 +7,12 @@ function NoteEditor({ notes, activeNoteId, saveNote }) {
   const textareaRef = useRef();
   const [codeEditorHeight, setCodeEditorHeight] = useState(0);
 
-  useLayoutEffect(() => {
-    const currentEditorHeight = textareaRef.current.clientHeight;
-    if (codeEditorHeight !== currentEditorHeight) {
-      setCodeEditorHeight(currentEditorHeight);
-    }
-  });
+  // useLayoutEffect(() => {
+  //   const currentEditorHeight = textareaRef.current.clientHeight;
+  //   if (codeEditorHeight !== currentEditorHeight) {
+  //     setCodeEditorHeight(currentEditorHeight);
+  //   }
+  // });
 
   return (
     <div className="note-editor" key={activeNoteId}>
@@ -22,7 +22,7 @@ function NoteEditor({ notes, activeNoteId, saveNote }) {
         html={currentNote.text}
         onChange={(e) => saveNote({ text: e.target.value })}
       />
-      <div className="note-editor__hint" style={{ top: codeEditorHeight }}>
+      <div className="note-editor__hint" style={{ bottom: "-26px" }}>
         Total length: {currentNote.text.length}
       </div>
     </div>

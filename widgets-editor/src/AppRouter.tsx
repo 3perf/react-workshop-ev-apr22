@@ -1,4 +1,18 @@
 import React, { Suspense } from "react";
+// ↓
+// const reactModule = __webpack_require__(156);
+// const React = reactModule.default
+// const Suspense = reactModule.Suspense
+
+// {
+//   0: ...,
+//   1: ...,
+//   2: ...,
+//   156: function "./node_modules/react/index.js"(module, exports, __webpack_require__) {
+//     (code from `node_modules/react/index.js`)
+//   }
+// }
+
 import history from "utils/history";
 import AppHeader from "pages/common/AppHeader";
 import { Redirect, Route, Router, Switch } from "react-router-dom";

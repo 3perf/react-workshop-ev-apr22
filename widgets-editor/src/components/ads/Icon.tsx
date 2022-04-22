@@ -43,7 +43,7 @@ import { ReactComponent as FluidIcon } from "assets/icons/ads/fluid.svg";
 
 import styled from "styled-components";
 import { CommonComponentProps, Classes } from "./common";
-import { noop } from "lodash";
+import noop from "lodash/noop";
 import { theme } from "constants/DefaultTheme";
 import Spinner from "./Spinner";
 import { ControlIcons } from "icons/ControlIcons";
